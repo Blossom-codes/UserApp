@@ -7,22 +7,41 @@ import java.sql.Statement;
 
 public class Main {
     public static void main(String[] args) {
-        String url = "jdbc:mysql://localhost/?user=root";
+        String url = "jdbc:mysql://localhost:3306/testdb";
         String username = "root";
-        String password = "";
-        String sql = "SELECT * FROM users";
+        String password = "Blozzy200120";
+//        String sql = "CREATE DATABASE testDb";
+//        String sql = "use testdb";
+//        String sql = " create table users(" +
+//                "     userId INT NOT NULL," +
+//                "     firstName VARCHAR(25)," +
+//                "     lastName VARCHAR(25)," +
+//                "     email VARCHAR(25)," +
+//                "     pin INT NOT NULL," +
+//                "     PRIMARY KEY (userId)" +
+//                "     );";
+//        String sql = " INSERT INTO users VALUES (1,'John', 'Doe', 'john@gmail.com',1234);";
+        String sql = "select * from users;";
+//        String sql = " select firstName, lastName from users where userId = 1";
+
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connect = DriverManager.getConnection(url,username,password);
+            Connection connect = DriverManager.getConnection(url, username, password);
 
-            Statement statement = connect.createStatement();
-            ResultSet result = statement.executeQuery(sql);
+            Statement stmt = connect.createStatement();
+            ResultSet result = stmt.executeQuery(sql);
+
 
             while (result.next())
             {
-                System.out.println(result.getInt(1)+" "+result.getString(2));
+                for (int i = 1; i <= 5; i++)
+                {
+                    System.out.print(" "+result.getString(i)+" | ");
+                }
+                System.out.println();
             }
-            connect.close();
+
+
         } catch (Exception e) {
             System.out.println(e);
         }

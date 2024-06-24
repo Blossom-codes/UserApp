@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="390f8aa0-3bc5-43f2-a6c6-f7e3ccb47b9e" name="Changes" comment="new modification">
+    <list default="true" id="390f8aa0-3bc5-43f2-a6c6-f7e3ccb47b9e" name="Changes" comment="sql integration">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserApp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/UserApp.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/blossom/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/blossom/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -99,7 +98,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718870664859</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="sql integration">
+      <option name="closed" value="true" />
+      <created>1718915720610</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1718915720610</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -120,6 +127,7 @@
     <MESSAGE value="new file" />
     <MESSAGE value="modified" />
     <MESSAGE value="new modification" />
-    <option name="LAST_COMMIT_MESSAGE" value="new modification" />
+    <MESSAGE value="sql integration" />
+    <option name="LAST_COMMIT_MESSAGE" value="sql integration" />
   </component>
 </project>
