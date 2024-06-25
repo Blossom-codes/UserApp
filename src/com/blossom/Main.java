@@ -1,9 +1,6 @@
 package com.blossom;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -20,28 +17,82 @@ public class Main {
 //                "     pin INT NOT NULL," +
 //                "     PRIMARY KEY (userId)" +
 //                "     );";
-//        String sql = " INSERT INTO users VALUES (1,'John', 'Doe', 'john@gmail.com',1234);";
-        String sql = "select * from users;";
-//        String sql = " select firstName, lastName from users where userId = 1";
-
+//
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connect = DriverManager.getConnection(url, username, password);
+            if (connect.isValid(0)) {
 
-            Statement stmt = connect.createStatement();
-            ResultSet result = stmt.executeQuery(sql);
-
-
-            while (result.next())
-            {
-                for (int i = 1; i <= 5; i++)
-                {
-                    System.out.print(" "+result.getString(i)+" | ");
+//                *****SELECTING******
+                String sql = " select * from users";
+                Statement stmt = connect.createStatement(); // for normal selecting
+//                PreparedStatement stmt = connect.prepareStatement(sql);
+//                Input input = new Input();
+//                int id = input.inputIntDataFromTerminal("Enter user id: ");
+//                stmt.setInt(1, id);
+                ResultSet result = stmt.executeQuery(sql); //no parameters for selecting with prepared statement
+                while (result.next()) {
+                    for (int i = 1; i <= 5; i++) {
+                        System.out.print(" " + result.getString(i) + " | ");
+                    }
+                    System.out.println();
                 }
-                System.out.println();
+
+//                ****INSERTING****
+//                String sql = " INSERT INTO users VALUES (?,?,?,?,?);";
+//                String sql = "select * from users where userId = ?";
+//                Input input = new Input();
+//                int id = input.inputIntDataFromTerminal("Enter new user id: ");
+//                String firstName = input.inputStringDataFromTerminal("Enter your first name");
+//                String lastName = input.inputStringDataFromTerminal("Enter your last name");
+//                String email = input.inputStringDataFromTerminal("Enter email: ");
+//                int pin = input.inputIntDataFromTerminal("Set a pin");
+//                PreparedStatement stmt = connect.prepareStatement(sql);
+//                stmt.setInt(1, id);
+//                stmt.setString(2, firstName);
+//                stmt.setString(3, lastName);
+//                stmt.setString(4, email);
+//                stmt.setInt(5, pin);
+//                int insertCount = stmt.executeUpdate();
+//                if (insertCount > 0)
+//                {
+//                    System.out.println("Successful");
+//                }else{
+//                    System.out.println("Failed");
+//                }
+
+//                *****UPDATING******
+//                String sql = "Update users SET firstName = ? where firstName = ? ";
+//                PreparedStatement stmt = connect.prepareStatement(sql);
+//                Input input = new Input();
+//                String oldName = input.inputStringDataFromTerminal("Enter user's first name to edit: ");
+//                String newName = input.inputStringDataFromTerminal("Enter user's new name: ");
+//                stmt.setString(1,newName);
+//                stmt.setString(2,oldName);
+//                int updateCount = stmt.executeUpdate();
+//                if (updateCount > 0)
+//                    System.out.println("Update was successful");
+//                else
+//                    System.out.println("Update failed");
+
+//                *****DELETING*****
+//
+//                String sql = "DELETE FROM users WHERE firstName = ? ";
+//                PreparedStatement stmt = connect.prepareStatement(sql);
+//                Input input = new Input();
+//                String name = input.inputStringDataFromTerminal("Enter user's first name to DELETE: ");
+//                stmt.setString(1,name);
+//                int updateCount = stmt.executeUpdate();
+//                if (updateCount > 0)
+//                    System.out.println("Delete was successful");
+//                else
+//                  System.out.println("Delete failed");
+
+                stmt.close();
+                connect.close();
+
+
             }
-
-
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -50,9 +101,7 @@ public class Main {
 //        Input input = new Input();
 //        for (int i = 1; i <= 2; i++) {
 //            System.out.println("i = " + i);
-//            String name = input.inputStringDataFromTerminal("Enter your name");
-//            String email = input.inputStringDataFromTerminal("Enter your email");
-//            int pin = input.inputIntDataFromTerminal("Set a pin");
+//
 //            Register signup = new Register(i, name, email, pin);
 //            System.out.println(signup.name() + ", Registration was Successful");
 //            System.out.println();
