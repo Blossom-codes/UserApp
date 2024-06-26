@@ -5,7 +5,7 @@ public class SqlStmt {
         return switch (option) {
             case 1 -> "SELECT * FROM users " + info; //SELECT
             case 2 -> "INSERT INTO users VALUES (?,?,?,?,?)";//INSERT
-            case 3 -> "UPDATE users SET " + info + " = ? WHERE firstName = ?";//UPDATE
+            case 3 -> "UPDATE users SET " + info + " = ? WHERE email = ?";//UPDATE
             case 4 -> "DELETE FROM users WHERE firstName = ? ";//DELETE
             default -> "";
         };

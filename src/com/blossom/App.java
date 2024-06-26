@@ -20,6 +20,8 @@ public class App {
                                 Enter 2 to create a new users
                                 Enter 3 to edit a user's information
                                 Enter 4 to delete a user
+                                Enter 5 to login as a user
+                                Enter 6 to logout
                                 """);
                 switch (option) {
                     case 1 -> { // SELECTING
@@ -29,11 +31,13 @@ public class App {
                                 String sqlCommand = sql.getStmt(option, "");
                                 Statement stmt = db.connect().createStatement(); // for normal selecting
                                 ResultSet result = stmt.executeQuery(sqlCommand); //no parameters for selecting with prepared statement
+
                                 while (result.next()) {
-                                    for (int i = 1; i <= 5; i++) {
+                                    for (int i = 1; i <= 7; i++) {
                                         System.out.print(" " + result.getString(i) + " | ");
                                     }
                                     System.out.println();
+
                                 }
                                 stmt.close();
                             } else {
@@ -41,12 +45,14 @@ public class App {
                                 PreparedStatement stmt = db.connect().prepareStatement(sqlCommand);
                                 stmt.setInt(1, Integer.parseInt(id));
                                 ResultSet result = stmt.executeQuery(); //no parameters for selecting with prepared statement
+
                                 while (result.next()) {
-                                    for (int i = 1; i <= 5; i++) {
+                                    for (int i = 1; i <= 7; i++) {
                                         System.out.print(" " + result.getString(i) + " | ");
                                     }
                                     System.out.println();
                                 }
+
                                 stmt.close();
                             }
 
@@ -80,13 +86,13 @@ public class App {
                     }
 
                     case 3 -> {// UPDATING
-                        String column = input.inputStringDataFromTerminal("What column do you want to edit? (firstName, lastName, email, pin)");
-                        if (!column.isEmpty() && (column.contains("firstName") || column.contains("lastName") || column.contains("email") || column.contains("pin"))) {
+                        String column = input.inputStringDataFromTerminal("What column do you want to edit? (firstName, lastName, email, pin,age)");
+                        if (!column.isEmpty() && (column.contains("firstName") || column.contains("lastName") || column.contains("email") || column.contains("pin") || column.contains("age"))) {
                             PreparedStatement stmt = db.connect().prepareStatement(sql.getStmt(option, column));
-                            String name = input.inputStringDataFromTerminal("Enter user's first name to edit: ");
-                            String newValue = input.inputStringDataFromTerminal("Enter user's new name: ");
+                            String email = input.inputStringDataFromTerminal("Enter user's email to edit: ");
+                            String newValue = input.inputStringDataFromTerminal("Enter new value: ");
                             stmt.setString(1, newValue);
-                            stmt.setString(2, name);
+                            stmt.setString(2, email);
                             int updateCount = stmt.executeUpdate();
                             if (updateCount > 0) {
                                 System.out.println("Update was successful");
@@ -109,6 +115,58 @@ public class App {
                         } else
                             System.out.println("Delete failed");
                         stmt.close();
+                    }
+                    case 5 -> {
+                        String email = input.inputStringDataFromTerminal("Enter email to login:");
+                        PreparedStatement stmt = db.connect().prepareStatement(sql.getStmt(1, "where email = ?"));
+                        stmt.setString(1, email);
+                        ResultSet result = stmt.executeQuery();
+                        if (result.next()) {
+                            int pin = input.inputIntDataFromTerminal("Enter pin to continue: ");
+                            if (result.getInt("pin") == pin) {
+
+                                PreparedStatement updateStmt = db.connect().prepareStatement(sql.getStmt(3, "status"));
+                                String newValue = "online";
+                                updateStmt.setString(1, newValue);
+                                updateStmt.setString(2, email);
+                                int updateCount = updateStmt.executeUpdate();
+                                if (updateCount > 0) {
+
+                                    updateStmt.close();
+                                    stmt.close();
+                                    System.out.println("Login was successful");
+                                } else {
+                                    System.out.println("Invalid login credentials");
+                                }
+                            } else {
+                                System.out.println("Invalid login credentials");
+                            }
+
+
+                        }
+                    }
+                    case 6 -> {
+                        String email = input.inputStringDataFromTerminal("Enter email to logout:");
+                        PreparedStatement stmt = db.connect().prepareStatement(sql.getStmt(1, "where email = ?"));
+                        stmt.setString(1, email);
+                        ResultSet result = stmt.executeQuery();
+                        if (result.next()) {
+                                PreparedStatement updateStmt = db.connect().prepareStatement(sql.getStmt(3, "status"));
+                                String newValue = "offline";
+                                updateStmt.setString(1, newValue);
+                                updateStmt.setString(2, email);
+                                int updateCount = updateStmt.executeUpdate();
+                                if (updateCount > 0) {
+
+                                    updateStmt.close();
+                                    stmt.close();
+                                    System.out.println("Logged out successfully");
+                                } else {
+                                    System.out.println("An error occurred");
+                                }
+
+
+                        }
                     }
                     default -> {
                         System.out.println("Enter a valid response next time!");
