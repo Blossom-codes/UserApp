@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="390f8aa0-3bc5-43f2-a6c6-f7e3ccb47b9e" name="Changes" comment="sql integration - successful query">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/blossom/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/blossom/Db.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/blossom/SqlStmt.java" afterDir="false" />
+    <list default="true" id="390f8aa0-3bc5-43f2-a6c6-f7e3ccb47b9e" name="Changes" comment="Restructured code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/blossom/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/blossom/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/blossom/Register.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/blossom/SqlStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/blossom/SqlStmt.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +115,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719243883081</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Restructured code">
+      <option name="closed" value="true" />
+      <created>1719404866228</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1719404866228</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -143,6 +146,7 @@
     <MESSAGE value="new modification" />
     <MESSAGE value="sql integration" />
     <MESSAGE value="sql integration - successful query" />
-    <option name="LAST_COMMIT_MESSAGE" value="sql integration - successful query" />
+    <MESSAGE value="Restructured code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Restructured code" />
   </component>
 </project>

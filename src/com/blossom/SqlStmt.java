@@ -3,9 +3,9 @@ package com.blossom;
 public class SqlStmt {
     public String getStmt(int option, String info) {
         return switch (option) {
-            case 1 -> "select * from users " + info; //SELECT
+            case 1 -> "SELECT * FROM users " + info; //SELECT
             case 2 -> "INSERT INTO users VALUES (?,?,?,?,?)";//INSERT
-            case 3 -> "Update users SET " + info + " = ? where firstName = ?";//UPDATE
+            case 3 -> "UPDATE users SET " + info + " = ? WHERE firstName = ?";//UPDATE
             case 4 -> "DELETE FROM users WHERE firstName = ? ";//DELETE
             default -> "";
         };
